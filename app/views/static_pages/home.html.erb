@@ -1,1 +1,22 @@
 <% provide(:title, 'Home') %>
+
+<% @conferences.each do |conference| %>
+    <div class="card text-center">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-block">
+        <h4 class="card-title"><%= conference.title %></h4>
+        <p class="card-text">
+          Location : <%= conference.location %><br>
+          Start Date : <%= conference.start_date %><br>
+          Description : <%= conference.description %><br>
+        </p>
+        <a href="<%= conference.url %>" class="btn btn-primary">Find More</a>
+      </div>
+      <div class="card-footer text-muted">
+        2 days ago
+      </div>
+    </div>
+<% end %>
+<br>

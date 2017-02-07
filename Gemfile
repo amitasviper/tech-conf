@@ -16,6 +16,10 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'sqlite3'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
 end
 
 group :development do

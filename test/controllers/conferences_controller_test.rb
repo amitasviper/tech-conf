@@ -11,6 +11,19 @@ class ConferencesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:conferences)
   end
 
+  test 'should list conferences matching given search criteria' do
+    search_results = []
+    expect(Conference).to receive(:search).with('foo').and_return(search_results)
+    get :index, search: 'foo'
+    expect(assigns(conferences)).to eq(search_results)
+  end
+
+  context 'when search key is not there' do
+    test 'should list all the conferences' do
+
+    end
+  end
+
   test "should get new" do
     get :new
     assert_response :success

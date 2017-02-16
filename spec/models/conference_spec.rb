@@ -19,4 +19,12 @@ RSpec.describe Conference, type: :model do
     end
   end
 
+  describe '.searches' do
+    it 'searches by title' do
+      conference_with_title_foo = FactoryGirl.create(:conference, title: 'foo')
+      expect(Conference.text_search('foo')).to eq([conference_with_title_foo])
+    end
+
+  end
+
 end

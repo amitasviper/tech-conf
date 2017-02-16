@@ -1,9 +1,11 @@
 require 'rspec'
 
-describe 'My behaviour' do
+RSpec.describe ConferencesController, :type => :controller do
 
-  it 'should do something' do
-
-    true.should == false
+  describe 'Get #index of conferences' do
+    it 'should return the conference' do
+      get :index
+      expect(response).to render_template('index')
+    end
   end
 end

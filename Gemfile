@@ -10,12 +10,14 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap-datepicker-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'pg_search'
 
 group :development, :test do
   gem 'byebug'
   gem 'spring'
-  gem 'sqlite3'
+  gem 'pg'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'

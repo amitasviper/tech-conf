@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @conferences = Conference.where(user_id: logged_in_id)
   end
 
   def new

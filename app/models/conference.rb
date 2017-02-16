@@ -10,7 +10,23 @@ class Conference < ActiveRecord::Base
                   using: {tsearch: {dictionary: "english"}},
                   associated_against: {user: [:name, :email]}
 
-  def self.text_search(keywords)
-    search(keywords)
+  def self.text_search(filters)
+    search_keywords = filters[:query]
+    search_start_date = filters[:search_start_date]
+    search_end_date = filters[:search_end_date]
+    search_start_date = search_start_date.to_date if search_start_date
+    search_end_date = search_end_date.to_date if search_end_date
+
+    puts search_start_date
+    puts search_end_date.blank?
+    conferences = []
+    if search_keywords.blank?
+      conferences = Conference.all
+    else
+      conferences = search(search_keywords)
+    end
+    conferences = conferences.where('start_date > ?', search_start_date) if search_start_date && !search_start_date.blank?
+    conferences = conferences.where('start_date < ?', search_end_date) if search_end_date && !search_end_date.blank?
+    conferences
   end
 end

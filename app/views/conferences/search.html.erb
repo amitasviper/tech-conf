@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag(search_path, :method => "get", class: "form-inline my-2 my-lg-0", id:"search-form") do %>
+    <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2", type: "text", placeholder: "Keywords" %>
+    <%= text_field_tag :search_start_date, params[:search_start_date], class: "form-control mr-sm-2", type: "text", placeholder: "YYYY-MM-DD" %>
+    <%= text_field_tag :search_end_date, params[:search_end_date], class: "form-control mr-sm-2", type: "text", placeholder: "YYYY-MM-DD" %>
+    <%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0",:name => nil %>
+<% end %>
+
+<%= render 'display' %>

@@ -4,7 +4,11 @@ class ConferencesController < ApplicationController
   # GET /conferences
   # GET /conferences.json
   def index
-    @conferences = Conference.all
+    if params[:query]
+      @conferences = Conference.text_search(params[:query])
+    else
+      @conferences = Conference.all
+    end
   end
 
   # GET /conferences/1
@@ -17,6 +21,7 @@ class ConferencesController < ApplicationController
     @conference = Conference.new
   end
 
+
   # GET /conferences/1/edit
   def edit
   end
@@ -24,10 +29,9 @@ class ConferencesController < ApplicationController
   # POST /conferences
   # POST /conferences.json
   def create
-    @conference = Conference.new(conference_params)
-
+    @conference = current_user.conferences.create(conference_params)
     respond_to do |format|
-      if @conference.save
+      if @conference.valid?
         format.html { redirect_to @conference, notice: 'Conference was successfully created.' }
         format.json { render :show, status: :created, location: @conference }
       else
@@ -69,6 +73,11 @@ class ConferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conference_params
-      params.require(:conference).permit(:title, :location, :description, :url, :start_date, :end_date)
+      puts params
+      filtered_params = params.require(:conference).permit(:title, :location, :description, :url, :start_date, :end_date)
+      filtered_params[:start_date] = filtered_params[:start_date].to_date
+      filtered_params[:end_date] = filtered_params[:end_date].to_date
+      puts filtered_params
+      filtered_params
     end
 end

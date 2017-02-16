@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get       '/new_conf',  :controller => 'conferences',     :action =>  'new'
   post      '/new_conf',  :controller => 'conferences',     :action =>  'create'
 
-  get       '/search',    :controller => 'conferences',     :action =>  'index'
+  get       '/search',    :controller => 'conferences',     :action =>  'search'
 
   resources :users
 

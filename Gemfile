@@ -13,6 +13,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootstrap-datepicker-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg_search'
+gem 'http'
 
 group :development, :test do
   gem 'byebug'

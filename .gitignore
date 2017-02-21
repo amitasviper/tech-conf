@@ -19,6 +19,9 @@
 # Ignore .idea folder
 /.idea
 
+# Ignore secret.yml file
+config/secrets.yml
+
 .DS_Store
 app/.DS_Store
 app/assets/.DS_Store

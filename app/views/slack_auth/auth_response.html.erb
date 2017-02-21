@@ -1,0 +1,6 @@
+<% provide(:title, 'Slack Authentication') %>
+<% if @resp['ok'] == true %>
+    Slack app integration is successful
+<% else %>
+    Slack app intergration failed. Try again.
+<% end %>

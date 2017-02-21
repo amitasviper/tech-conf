@@ -4,14 +4,14 @@ class ConferencesController < ApplicationController
   # GET /conferences
   # GET /conferences.json
   def index
-      @conferences = Conference.all
+    @conferences = Conference.get_all
   end
 
   def search
     @conferences = Conference.text_search(params)
     respond_to do |format|
       format.html { render 'search' }
-      format.json { render json: @conferences, :except=> [:created_at, :updated_at, :id, :user_id ] }
+      format.json { render json: @conferences, :except => [:created_at, :updated_at, :id, :user_id] }
     end
   end
 
@@ -70,16 +70,16 @@ class ConferencesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_conference
-      @conference = Conference.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_conference
+    @conference = Conference.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def conference_params
-      filtered_params = params.require(:conference).permit(:title, :location, :description, :url, :start_date, :end_date)
-      filtered_params[:start_date] = filtered_params[:start_date].to_date
-      filtered_params[:end_date] = filtered_params[:end_date].to_date
-      filtered_params
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def conference_params
+    filtered_params = params.require(:conference).permit(:title, :location, :description, :url, :start_date, :end_date)
+    filtered_params[:start_date] = filtered_params[:start_date].to_date
+    filtered_params[:end_date] = filtered_params[:end_date].to_date
+    filtered_params
+  end
 end

@@ -1,28 +1,29 @@
-
-    <% @conferences.each_slice(3).to_a.each do |conf_triplet| %>
-        <div class="row">
-          <% conf_triplet.each do |conference| %>
-              <div class="col-sm-4">
-                <div class="card text-center">
-                  <div class="card-header">
-                    Featured
-                  </div>
-                  <div class="card-block">
-                    <h4 class="card-title"><%= conference.title %></h4>
-                    <p class="card-text">
-                      Location : <%= conference.location %><br>
-                      Start Date : <%= conference.start_date %><br>
-                      Description : <%= truncate(conference.description, :length => 100) %><br>
-                    </p>
-                    <a href="<%= conference.url %>" class="btn btn-primary">Find More</a>
-                  </div>
-                  <div class="card-footer text-muted">
-                    2 days ago
-                  </div>
-                </div>
+<% @conferences.each_slice(3).to_a.each do |conf_triplet| %>
+    <div class="row">
+      <% conf_triplet.each do |conference| %>
+          <div class="col-sm-4">
+            <div class="card text-center">
+              <div class="card-header">
+                Featured
               </div>
-          <% end %>
-        </div><br>
-    <% end %>
+              <div class="card-block">
+                <h4 class="card-title"><%= conference.title %></h4>
+                <p class="card-text">
+                  Location : <%= conference.location %><br>
+                  Start Date : <%= conference.start_date %><br>
+                  Description : <%= truncate(conference.description, :length => 100) %><br>
+                </p>
+                <a href="<%= conference.url %>" class="<%= (conference.start_date - Date.today).to_i < 10 ? 'btn btn-danger' : 'btn btn-primary' %>">Find
+                  More</a>
+              </div>
+              <div class="card-footer text-muted">
+                <% days_left = (conference.start_date - Date.today).to_i %>
+                <%= days_left >= 0 ? "#{days_left} days to go" : 'You missed the conference' %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div><br>
+<% end %>
 
 <br>

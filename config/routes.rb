@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   get       '/search',    :controller => 'conferences',     :action =>  'search'
 
+  get       '/authbegin', :controller => 'slack_auth',      :action => 'initiate_auth'
+  get       '/authresponse', :controller => 'slack_auth',      :action => 'auth_response'
+
   resources :users
 
 end

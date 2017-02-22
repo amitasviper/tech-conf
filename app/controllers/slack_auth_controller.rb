@@ -3,7 +3,7 @@ require 'http'
 class SlackAuthController < ApplicationController
   def initiate_auth
     slack_app_url = Rails.application.secrets.slack_app
-    params = {'redirect_to': 'https://6e5224bb.ngrok.io/authresponse'}
+    params = {'redirect_to': authresponse_url}
     auth_url = generate_url(slack_app_url, params)
     redirect_to auth_url
   end

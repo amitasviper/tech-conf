@@ -9,13 +9,17 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
+<%= render 'layouts/sidebar' %>
 
-<div class="container">
+
+<div class="container" style="float: left">
   <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
   <%= yield %>
 </div>
+
+
 <%= render 'layouts/footer' %>
 </body>
 </html>

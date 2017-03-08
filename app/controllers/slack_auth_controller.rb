@@ -5,6 +5,7 @@ class SlackAuthController < ApplicationController
     slack_app_url = Rails.application.secrets.slack_app
     params = {'redirect_to': authresponse_url}
     auth_url = generate_url(slack_app_url, params)
+    puts "Redirecting to : #{auth_url}"
     redirect_to auth_url
   end
 

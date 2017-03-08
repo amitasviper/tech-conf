@@ -13,7 +13,7 @@
                   Start Date : <%= conference.start_date %><br>
                   Description : <%= truncate(conference.description, :length => 100) %><br>
                 </p>
-                <a href="<%= conference.url %>" class="<%= (conference.start_date - Date.today).to_i < 10 ? 'btn btn-danger' : 'btn btn-primary' %>">Find
+                <a href="<%= conference.url %>" target="_blank" class="<%= (conference.start_date - Date.today).to_i < 10 ? 'btn btn-danger' : 'btn btn-primary' %>">Find
                   More</a>
               </div>
               <div class="card-footer text-muted">
